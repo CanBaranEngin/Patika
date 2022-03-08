@@ -1,0 +1,13 @@
+.text {
+    font-size: 11px;
+}
+.header {
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
+.marg {
+    margin-left: 100px;
+    margin-right: 100px;
+    background-color: aqua;
+}   

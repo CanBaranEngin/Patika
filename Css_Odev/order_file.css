@@ -1,0 +1,52 @@
+.text-red {
+    color: rgb(187, 57, 57);
+}
+.text-blue {
+    color: rgb(23, 132, 182);
+}
+
+.text-green {
+    color: green;
+}
+
+.text-cb {
+    color: cadetblue;
+}
+
+.shadow {
+    -webkit-box-shadow: -2px -1px 13px 13px rgba(0,0,0,0.12); 
+    box-shadow: -2px -1px 13px 13px rgba(0,0,0,0.12);
+}
+.image {
+    border: 1px solid rgb(136, 131, 131);
+}
+.header-align {
+    text-align: center;
+    
+}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+.button {
+    background-color: rgb(35, 161, 161);
+    border-radius: 20px;
+    color: white;
+    margin-left: 1170px;
+    text-align: center;
+    padding: 10px 25px;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 25px;
+  }
+
+.home {
+    background-color: #f44336;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
