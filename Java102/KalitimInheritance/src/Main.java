@@ -9,7 +9,7 @@ public class Main {
         officer o1 = new officer("Mahmut", "4556635345", "mahmut@mhmt.com", "librarian", "09.00 - 18.00");
 
 
-        System.out.println( w1.getFirstLastName());
+        System.out.println(w1.getFirstLastName());
         a1.enter();
         a1.startLesson();
         o1.diningHall();
