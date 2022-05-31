@@ -6,12 +6,13 @@ public class Player {
     private int health;
     private int coin;
     private String charName;
-
     private String name;
+    private Inventory inventory;
    
 
     public Player(String name) {
         this.name = name;
+        this.inventory= new Inventory();
         
     }
     
@@ -38,27 +39,40 @@ public class Player {
                 break;
 
             case 2:
-            initPlayer(new Archer());
-            break;
+                initPlayer(new Archer());
+                break;
 
             case 3:
-            initPlayer(new Knight());
-            break;
+                initPlayer(new Knight());
+                break;
+
+            default:
+                initPlayer(new Samurai());
+                break;
 
 
         }
 
-        System.out.println("Character who is choosen:  " + this.charName);
-        
+        System.out.println("Character who is choosen: " + this.getCharName());
        
     }
 
-    void initPlayer(GameChar gameChar){
+    
+
+
+    public void initPlayer(GameChar gameChar){
 
         this.setDamage(gameChar.getDamage());
         this.setHealth(gameChar.getHealth());
         this.setCoin(gameChar.getCoin());
         this.setCharName(gameChar.getCharName());
+
+    }
+
+    public void printInfo(){
+
+        System.out.println("Your Weapon: " + this.getInventory().getWeapon().getName() + " Your Damage: " + this.getDamage() +
+        " Your Health: " + this.getHealth() + " Your Coin: " + this.getCoin());
 
     }
 
@@ -80,7 +94,7 @@ public class Player {
     }
 
     public int getDamage() {
-        return this.damage;
+        return damage+this.getInventory().getWeapon().getDamage();
     }
 
     public void setDamage(int damage) {
@@ -110,6 +124,16 @@ public class Player {
     public void setCharName(String charName) {
         this.charName = charName;
     }
+
+
+    public Inventory getInventory() {
+        return this.inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+
 
 
 
