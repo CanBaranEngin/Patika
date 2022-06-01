@@ -74,7 +74,7 @@ public class Player {
         System.out.println("Your Weapon: " + this.getInventory().getWeapon().getName() +
         " Your Armor: " + this.getInventory().getArmor().getName()+
         " Your Block: " + this.getInventory().getArmor().getBlock() +
-        " Your Damage: " + this.getDamage() +
+        " Your Damage: " + this.getTotalDamage() +
         " Your Health: " + this.getHealth() + " Your Coin: " + this.getCoin());
 
     }
@@ -96,9 +96,14 @@ public class Player {
         this.input = input;
     }
 
-    public int getDamage() {
+    public int getTotalDamage(){
         return damage+this.getInventory().getWeapon().getDamage();
     }
+
+    public int getDamage() {
+        return damage;
+    }
+
 
     public void setDamage(int damage) {
         this.damage = damage;
@@ -109,6 +114,9 @@ public class Player {
     }
 
     public void setHealth(int health) {
+        if(health<0){
+            health=0;
+        }
         this.health = health;
     }
 
@@ -136,6 +144,8 @@ public class Player {
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
     }
+
+  
 
 
 
