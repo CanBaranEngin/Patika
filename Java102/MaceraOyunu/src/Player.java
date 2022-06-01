@@ -4,6 +4,7 @@ public class Player {
     private Scanner input = new Scanner(System.in);
     private int damage;
     private int health;
+    private int initHealth;
     private int coin;
     private String charName;
     private String name;
@@ -14,7 +15,10 @@ public class Player {
         this.name = name;
         this.inventory= new Inventory();
         
+        
     }
+
+
     
 
     void selectChar(){
@@ -64,6 +68,7 @@ public class Player {
 
         this.setDamage(gameChar.getDamage());
         this.setHealth(gameChar.getHealth());
+        this.setInitHealth(gameChar.getHealth());
         this.setCoin(gameChar.getCoin());
         this.setCharName(gameChar.getCharName());
 
@@ -144,6 +149,16 @@ public class Player {
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
     }
+
+
+    public int getInitHealth() {
+        return this.initHealth;
+    }
+
+    public void setInitHealth(int initHealth) {
+        this.initHealth = initHealth;
+    }
+
 
   
 
