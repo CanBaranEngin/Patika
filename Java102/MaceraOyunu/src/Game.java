@@ -2,6 +2,9 @@ import java.util.Scanner;
 
 public class Game {
     private Scanner input = new Scanner(System.in);
+    
+
+    
 
     public void start(){
         System.out.println("Welcome to the Adventure Game: ");
@@ -33,6 +36,13 @@ public class Game {
                 switch(selectLoc){
                     case 1:
                         location=new SafeHouse(player);
+                        if(player.getInventory().getList().size()==3){
+                            System.out.println("*****************************************************");
+                            System.out.println("********* Congratulations You Won the Game **********");
+                            System.out.println("*****************************************************");
+                            stop=false;
+                            break;
+                        }
                         break;
                     
                     case 2:
@@ -40,14 +50,35 @@ public class Game {
                         break;
 
                     case 3:
-                        location=new Cave(player);
-                        break;
+                        if(!player.getInventory().getList().contains("Food")){
+                            location=new Cave(player);
+                            break;
+                        }else{
+                            System.out.println("You already have food special item, please select another location");
+                            location=new SafeHouse(player);
+                            break;
+                            
+                        }
+                     
                     case 4:
-                        location=new Forest(player);
-                        break;
+                        if(!player.getInventory().getList().contains("Wood")){
+                            location=new Forest(player);
+                            break;
+                        }else{
+                            System.out.println("You already have wood special item, please select another location");
+                            location=new SafeHouse(player);
+                         break;
+                        
+                    }
                     case 5:
-                        location=new River(player);
-                        break;
+                        if(!player.getInventory().getList().contains("River")){
+                            location=new River(player);
+                            break;
+                        }else{
+                            System.out.println("You already have water special item, please select another location");
+                            location=new SafeHouse(player);
+                            break;
+                        }
                     
                     default:
                         System.out.println("Invalid number, please select location.");

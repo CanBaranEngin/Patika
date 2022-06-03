@@ -1,13 +1,15 @@
+import java.util.ArrayList;
 import java.util.Random;
+
 
 public abstract class BattleLoc extends Location {
 
     private Monster monster;
-    private String bounty;
+    private Bounty bounty;
     private int maxMonstValue;
+    
 
-
-    public BattleLoc(Player player, String name, Monster monster, String bounty,int maxMonstValue) {
+    public BattleLoc(Player player, String name, Monster monster, Bounty bounty,int maxMonstValue) {
         super(player, name);
         this.monster=monster;
         this.bounty=bounty;
@@ -27,6 +29,7 @@ public abstract class BattleLoc extends Location {
             System.out.println("War has been started!! ");
             if(combat(monstnum)){
                 System.out.println(this.getPlayer().getName() + " Congratulations you defeated all enemies !");
+                earnBounty();
                 return true;
 
             }
@@ -128,6 +131,14 @@ public abstract class BattleLoc extends Location {
         return r.nextInt(this.getMaxMonstValue())+1;
     }
 
+    public void earnBounty(){
+
+        this.getPlayer().getInventory().getList().add(this.getBounty().getName());
+        System.out.println("You earn " +this.getBounty().getName()+ " special item." );
+        
+        
+        
+    }    
 
     public Monster getMonster() {
         return this.monster;
@@ -137,11 +148,11 @@ public abstract class BattleLoc extends Location {
         this.monster = monster;
     }
 
-    public String getBounty() {
+    public Bounty getBounty() {
         return this.bounty;
     }
 
-    public void setBounty(String bounty) {
+    public void setBounty(Bounty bounty) {
         this.bounty = bounty;
     }
 
@@ -152,6 +163,8 @@ public abstract class BattleLoc extends Location {
     public void setMaxMonstValue(int maxMonstValue) {
         this.maxMonstValue = maxMonstValue;
     }
+
+
 
 
 }

@@ -131,7 +131,7 @@ public class ToolStore extends NormalLocation {
                     System.out.println("Money which your rise: " + this.getPlayer().getCoin());
                     System.out.println("Your current armor: " + this.getPlayer().getInventory().getArmor().getName());
                     this.getPlayer().getInventory().setArmor(selectedArmor);
-                    System.out.println("Your new weapon: " + this.getPlayer().getInventory().getArmor().getName() );
+                    System.out.println("Your new armor: " + this.getPlayer().getInventory().getArmor().getName() );
 
         
                 }

@@ -80,7 +80,12 @@ public class Player {
         " Your Armor: " + this.getInventory().getArmor().getName()+
         " Your Block: " + this.getInventory().getArmor().getBlock() +
         " Your Damage: " + this.getTotalDamage() +
-        " Your Health: " + this.getHealth() + " Your Coin: " + this.getCoin());
+        " Your Health: " + this.getHealth() + " Your Coin: " + this.getCoin() +
+        " Your Items: " + this.getInventory().getList());;
+
+        //" 
+        
+        
 
     }
 
