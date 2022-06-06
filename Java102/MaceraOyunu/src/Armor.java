@@ -13,6 +13,8 @@ public class Armor {
         this.price = price;
         
     }
+
+
     
     public static Armor[] armors(){
         Armor[] armorList = new Armor[3];

@@ -7,6 +7,7 @@ public abstract class BattleLoc extends Location {
     private Monster monster;
     private Bounty bounty;
     private int maxMonstValue;
+    private int hitChance;
     
 
     public BattleLoc(Player player, String name, Monster monster, Bounty bounty,int maxMonstValue) {
@@ -16,6 +17,8 @@ public abstract class BattleLoc extends Location {
         this.maxMonstValue=maxMonstValue;
         
     }
+
+
 
     @Override
     public boolean onLocation() {
@@ -30,6 +33,10 @@ public abstract class BattleLoc extends Location {
             if(combat(monstnum)){
                 System.out.println(this.getPlayer().getName() + " Congratulations you defeated all enemies !");
                 earnBounty();
+                if(this.getMonster().getName().equals("Snake")){
+                    dropBounty();
+                }
+            
                 return true;
 
             }
@@ -59,11 +66,16 @@ public abstract class BattleLoc extends Location {
                 String selectCombat=input.nextLine().toUpperCase();
 
                 if(selectCombat.equals("P")){
-                    System.out.println("You hitted the " + this.getMonster().getName());
-                    this.getMonster().setHealth(this.getMonster().getHealth()-this.getPlayer().getTotalDamage());
-                    afterHit();
 
-                    if(this.getMonster().getHealth()>0){
+                    hitChance=randomHitChance();
+
+                    if(hitChance==0){
+                        System.out.println("You hitted the " + this.getMonster().getName());
+                        this.getMonster().setHealth(this.getMonster().getHealth()-this.getPlayer().getTotalDamage());
+                        afterHit();
+
+
+                    }if(this.getMonster().getHealth()>0 && hitChance==1){
                         System.out.println();
                         System.out.println("Monster hitted the " + this.getPlayer().getName());
                         int monsterHitDamage=this.getMonster().getDamage()-this.getPlayer().getInventory().getArmor().getBlock();
@@ -72,7 +84,9 @@ public abstract class BattleLoc extends Location {
                         }
                         this.getPlayer().setHealth(this.getPlayer().getHealth() - monsterHitDamage);
                         afterHit();
-                    } 
+
+                    }
+
                 }else {
                     return false;
                 }
@@ -131,14 +145,82 @@ public abstract class BattleLoc extends Location {
         return r.nextInt(this.getMaxMonstValue())+1;
     }
 
-    public void earnBounty(){
+    public int randomHitChance(){
+        Random c = new Random();
+        return c.nextInt(2);
 
-        this.getPlayer().getInventory().getList().add(this.getBounty().getName());
-        System.out.println("You earn " +this.getBounty().getName()+ " special item." );
-        
-        
-        
-    }    
+    }
+
+    public void earnBounty(){
+        if (!this.getMonster().getName().equals("Snake")){
+            this.getPlayer().getInventory().getList().add(this.getBounty().getName());
+            System.out.println("You earn " +this.getBounty().getName()+ " special item." );
+
+        }
+
+    }
+
+    public void dropBounty(){
+        int value = (int)(Math.random()*100);
+        if(value<15){
+            int valueSec=(int)(Math.random()*100);
+            if(valueSec<20){
+                System.out.println("You dropped Rifle !!");
+                this.getPlayer().getInventory().setWeapon(new Weapon("Rifle", 3, 7, 45));
+                System.out.println("Your current weapon: "+ this.getPlayer().getInventory().getWeapon().getName() );
+            }else if(valueSec>20 && valueSec<50) {
+                System.out.println("You dropped Sword !!");
+                this.getPlayer().getInventory().setWeapon(new Weapon("Sword", 2, 3, 35));
+                System.out.println("Your current weapon: "+ this.getPlayer().getInventory().getWeapon().getName());
+            }
+            else{
+                System.out.println("You dropped Pistol !!");
+                this.getPlayer().getInventory().setWeapon(new Weapon("Pistol", 1, 2, 25));
+                System.out.println("Your current weapon: "+ this.getPlayer().getInventory().getWeapon().getName());
+            }
+        }
+
+        if(value>15 && value<30){
+            int valueSec=(int)(Math.random()*100);
+            if(valueSec<20){
+                System.out.println("You dropped Light Armor !!");
+                this.getPlayer().getInventory().setArmor(new Armor("Light", 1, 1, 15));
+                System.out.println("Your current armor: "+ this.getPlayer().getInventory().getArmor().getName());
+            }else if(valueSec>20 && valueSec<50) {
+                System.out.println("You dropped Mid Armor !!");
+                this.getPlayer().getInventory().setArmor(new Armor("Mid", 2, 3, 25));
+                System.out.println("Your current armor: "+ this.getPlayer().getInventory().getArmor().getName());
+            }
+            else{
+                System.out.println("You dropped Heavy Armor !!");
+                this.getPlayer().getInventory().setArmor(new Armor("Heavy", 3, 5, 40));
+                System.out.println("Your current armor: "+ this.getPlayer().getInventory().getArmor().getName());
+            }
+        }
+
+        if(value>30 && value<55){
+            int valueSec=(int)(Math.random()*100);
+            if(valueSec<20){
+                System.out.println("You dropped 10 coin !!");
+                this.getPlayer().setCoin(this.getPlayer().getCoin()+10);
+            }else if(valueSec>20 && valueSec<50) {
+                System.out.println("You dropped 5 coin !!");
+                this.getPlayer().setCoin(this.getPlayer().getCoin()+5);
+            }
+            else{
+                System.out.println("You dropped 1 coin !!");
+                this.getPlayer().setCoin(this.getPlayer().getCoin()+1);
+            }
+
+
+        }else{
+            System.out.println("Unfortunately didn't drop any item.");
+        }
+
+
+
+
+    }
 
     public Monster getMonster() {
         return this.monster;
@@ -163,6 +245,16 @@ public abstract class BattleLoc extends Location {
     public void setMaxMonstValue(int maxMonstValue) {
         this.maxMonstValue = maxMonstValue;
     }
+
+
+    public int getHitChance() {
+        return this.hitChance;
+    }
+
+    public void setHitCahnce(int hitCahnce) {
+        this.hitChance = hitChance;
+    }
+
 
 
 

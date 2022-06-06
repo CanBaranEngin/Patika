@@ -25,6 +25,7 @@ public class Game {
             System.out.println("3- Cave --> You have to be careful. You can face with monster.");
             System.out.println("4- Forest --> You have to be careful. You can face with monster.");
             System.out.println("5- River --> You have to be careful. You can face with monster.");
+            System.out.println("6- Mine --> You have to be careful. You can face with monster.");
             System.out.println("0- Quit the Game");
             System.out.println("Please select location which you want to go");
             int selectLoc= input.nextInt();
@@ -79,6 +80,12 @@ public class Game {
                             location=new SafeHouse(player);
                             break;
                         }
+                    case 6:
+                        location=new Mine(player);
+                        
+                        
+                        break;
+                        
                     
                     default:
                         System.out.println("Invalid number, please select location.");

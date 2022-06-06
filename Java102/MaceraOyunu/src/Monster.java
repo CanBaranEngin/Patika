@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Monster {
 
     private String name;
@@ -5,6 +7,7 @@ public class Monster {
     private int damage;
     private int health;
     private int bounty;
+
 
     
 
@@ -16,7 +19,13 @@ public class Monster {
         this.health = health;
         this.bounty=bounty;
     }
+    public Monster(int id,String name, int damage, int health) {
 
+        this.id = id;
+        this.name=name;
+        this.damage = damage;
+        this.health = health;
+    }
 
     public int getId() {
         return this.id;
